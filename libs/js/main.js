@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var app = new Vue({
         el: '#app',
         data: {
-            posts: []
+            posts: [],
+            postsCopy: []
         },
         methods: {
             createPost(e) {
@@ -32,14 +33,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                     .then(response => response.json())
                     .then(data => document.querySelector(".modal-content").innerHTML = data)
+            },
+            sortingType(e) {
+                document.querySelectorAll('.aside li').forEach(elem=>elem.classList.remove('current'))
+                e.target.parentNode.classList.add('current');
+                const type = e.target.parentNode.getAttribute('data-type');
+                this.postsCopy = this.posts;
+                this.postsCopy = this.postsCopy.filter(function (elem) {
+                    if (elem.TYPE == type) {
+                        return elem;
+                    }
+                });
+                if (type == 'all') {
+                    this.postsCopy = this.posts
+                }
             }
+
         },
 
 
         created() {
             fetch("../../get_posts.php")
                 .then(response => response.json())
-                .then(data => this.posts = data)
+                .then(data => {
+                    this.posts = data,
+                        this.postsCopy = data
+                })
         }
+
     })
 })

@@ -10,7 +10,8 @@ function getTypePost($str)
         "bitrix" => array("#bitrix", "bitrix"),
         "general" => array("#general", "#g"),
         "sberbank" => array("#sberbank", "sberbank"),
-        "bitrix24" => array("#bitrix24", "#b24", "bitrix 24")
+        "bitrix24" => array("#bitrix24", "#b24", "bitrix 24"),
+        "sql" => array("#sql", "sql")
     );
     foreach ($types as $key => $type) {
         $result = array_intersect($str, $type);

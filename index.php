@@ -12,12 +12,12 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/layout_header.php";
                 <input type="text" placeholder="Поиск">
             </form>
             <ul>
-                <li class="current"><a href="#">ВСЕ</a></li>
-                <li data-id="bitrix"><a href="#">Bitrix</a></li>
-                <li data-id="bitrix24"><a href="#">Bitrix 24</a></li>
-                <li data-id="js"><a href="#">JS/jQuery</a></li>
-                <li data-id="vue"><a href="#">Vue</a></li>
-                <li data-id="php"><a href="#">PHP</a></li>
+                <li @click="sortingType" data-type="all" class="current"><a href="#">ВСЕ</a></li>
+                <li @click="sortingType" data-type="bitrix"><a href="#">Bitrix</a></li>
+                <li @click="sortingType" data-type="bitrix24"><a href="#">Bitrix 24</a></li>
+                <li @click="sortingType" data-type="js"><a href="#">JS/jQuery</a></li>
+                <li @click="sortingType" data-type="sql"><a href="#">SQL</a></li>
+                <li @click="sortingType" data-type="php"><a href="#">PHP</a></li>
             </ul>
             <form class="mt-auto">
                 <div class="text-center mb-2" id="message" style="color: aliceblue"></div>
@@ -41,7 +41,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/layout_header.php";
                 </div>
             </div>
             <div class="col-12 row m-0 mt-4">
-                <div class="col-12 col-md-6 col-lg-4 post-inner" v-for="post in posts">
+                <div class="col-12 col-md-6 col-lg-4 post-inner" v-for="post in postsCopy">
                     <div class="post" @click="openModal"data-toggle="modal" data-target="#exampleModal"
                          :data-id=post.ID >
                         <div class="post-header">
